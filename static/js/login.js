@@ -1,5 +1,5 @@
-var server_URL = `https://habitual-backend-fp.herokuapp.com`
-var client_URL = `https://front-end-habitual.netlify.app/`
+var server_URL = `https://habitual-backend-fp.herokuapp.com/`
+var client_URL = `file:///C:/Users/bradn/futureproof/central_repo_habitual/Front_end_Habitual/`
 
 window.addEventListener('load', renderLoginForm())
 

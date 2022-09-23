@@ -18,24 +18,25 @@ describe('app', () => {
         fetch.resetMocks();
     })
 
-    // describe('requests', () => {
-    //     describe('fetchAll', () => {
-    //         test('it makes a get request to /habits', () => {
-    //             app.fetchAll();
-    //             expect(fetch.mock.calls[0][0]).toMatch(/habits$/)
-    //         })
-    //     })
-    // })
+    describe('requests', () => {
+        describe('fetchAll', () => {
+            test('it makes a get request to /habits', () => {
+                app.fetchAll();
+                expect(fetch).toHaveBeenCalled()
+            })
+        })
+    })
 
     describe('showAll', () => {
-        test('it posts habits to the page', () => {
+        test('adds multiple entries to the page', () => {
 
             const fakeAPI = [
                 { habit_name: "Test", frequencyDone : 0, frequency: 2 },
+                { habit_name: "Test 2", frequencyDone : 2, frequency: 2 },
             ]
             app.showAll(fakeAPI)
             const entryCount = document.querySelectorAll('.habit').length
-            expect(entryCount).toBe(1)
+            expect(entryCount).toBe(2)
         })
     })
 })

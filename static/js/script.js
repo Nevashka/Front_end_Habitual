@@ -2,13 +2,13 @@ var server_URL = `https://habitual-backend-fp.herokuapp.com`
 var client_URL = `https://front-end-habitual.netlify.app/`
 
 
-async function fetchAll() {
+function fetchAll() {
     var userID = localStorage.getItem('id')
-    let response = await fetch(`${server_URL}/${userID}`);
-    let data = await response.json();
-    data.forEach(habit => showAll(habit))
-}
-
+    fetch(`${server_URL}/habits/user/${userID}`)
+        .then(r => r.json())
+        .then(showAll)
+        .catch(console.warn)
+};
 function postHabit(e) {
     e.preventDefault();
     if (!document.querySelector('#new-habit-text').value) {
@@ -18,7 +18,7 @@ function postHabit(e) {
 
         console.log(document.querySelector('#new-habit-period').value)
         console.log(document.querySelector('#new-habit-text').value)
-        
+
         const entryData = {
             habit_name: document.querySelector('#new-habit-text').value,
             period: document.querySelector('#new-habit-period').value,
@@ -43,7 +43,7 @@ function postHabit(e) {
             .catch(console.warn)
     }
 
-   
+
 }
 
 async function completedDate(e) {
@@ -86,7 +86,7 @@ async function appendFrequency(e) {
         const { err } = await response.json();
         if (err) {
             throw Error(err)
-            
+
         } else {
         }
     } catch (err) {
@@ -95,9 +95,13 @@ async function appendFrequency(e) {
     }
 
 }
-  
 
-const showAll = (entryData) => {
+const showAll = (entries) => {
+    entries.forEach(showOne)
+}
+
+
+const showOne = (entryData) => {
     if (entryData.frequency_done < entryData.frequency) {
         const newDiv = document.createElement('div');
         newDiv.className = 'habit'
@@ -143,7 +147,7 @@ const showAll = (entryData) => {
         else {
             monthlyDiv.appendChild(newDiv)
         }
-        
+
 
 
     } else {
@@ -178,7 +182,7 @@ const showAll = (entryData) => {
 
 
 }
-module.exports = {fetchAll, showAll }
+module.exports = { fetchAll, showAll }
 
 
 
