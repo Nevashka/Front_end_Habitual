@@ -9,6 +9,7 @@ function fetchAll() {
         .then(showAll)
         .catch(console.warn)
 };
+
 function postHabit(e) {
     e.preventDefault();
     if (!document.querySelector('#new-habit-text').value) {
@@ -112,7 +113,6 @@ const showOne = (entryData) => {
         newHabitText.id = "habit-text" + entryData.id
 
         newHabitText.textContent = entryData.habit_name
-
 
 
         const newFreqCounter = document.createElement('div');
