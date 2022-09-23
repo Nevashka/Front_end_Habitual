@@ -31,8 +31,8 @@ describe('app', () => {
         test('adds multiple entries to the page', () => {
 
             const fakeAPI = [
-                { habit_name: "Test", frequencyDone : 0, frequency: 2 },
-                { habit_name: "Test 2", frequencyDone : 2, frequency: 2 },
+                { habit_name: "Test", frequency_done : 0, frequency: 2 },
+                { habit_name: "Test 2", frequency_done : 2, frequency: 2 },
             ]
             app.showAll(fakeAPI)
             const entryCount = document.querySelectorAll('.habit').length
